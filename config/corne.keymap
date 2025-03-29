@@ -39,7 +39,7 @@
         };
 
 
-        symbols {
+        symbolsTest {
             display-name = "symbols";
 
             bindings = 
