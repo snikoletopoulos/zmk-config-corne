@@ -41,25 +41,6 @@
 &kp EQUAL   &mt LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M        &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
                                            &trans          &kp BSPC  &kp SPACE         &kp RET     &mo 1        &kp LGUI
             >;
-/*             display-name = "symbols"; */
-/**/
-/*             bindings = < */
-/* &trans  &kp A  &kp A  &kp A  &kp A  &kp A    &trans    &kp N7  &kp N8  &kp N9  &kp A   &trans */
-/* &trans  &kp A  &kp A  &kp A  &kp A  &kp A    &trans    &kp N4  &kp N5  &kp N6  &kp A   &trans */
-/* &trans  &kp A  &kp A  &kp A  &kp A  &kp A    &kp A     &kp N1  &kp N2  &kp N3  &kp A   &trans */
-/*                                  &trans                &trans                 &trans       &trans    &trans  &kp N0 */
-/*             >; */
         };
-/**/
-/*         miscThree { */
-/*             display-name = "misc2"; */
-/**/
-/*             bindings = < */
-/* &trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_VOLUME_UP  &kp C_VOLUME_DOWN  &kp K_MUTE  &trans  &trans */
-/* &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN         &kp UP             &kp RIGHT   &trans  &trans */
-/* &trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_PREVIOUS   &kp K_PLAY_PAUSE   &kp C_NEXT  &trans  &trans */
-/*                                         &trans        &trans        &trans          &kp RET   &trans           &trans */
-/*             >; */
-/*         }; */
     };
 };
