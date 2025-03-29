@@ -32,7 +32,7 @@
             >;
         };
 
-        symbols {
+        numpad_layer {
             display-name = "test";
 
             bindings = <
