@@ -8,9 +8,9 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
-#define BASE 0
-#define SYMBOLS 1
-#define MISC 2
+/* #define BASE 0 */
+/* #define SYMBOLS 1 */
+/* #define MISC 2 */
 
 / {
     keymap {
@@ -23,9 +23,10 @@
 &kp TAB     &kp Q        &kp W             &kp E           &kp R     &kp T             &kp Y       &kp U        &kp I      &kp O              &kp P            &kp BACKSLASH
 &kp ESCAPE  &kp A        &mt LEFT_SHIFT S  &mt LEFT_GUI D  &kp F     &mt LEFT_ALT G    &mt LALT H  &kp J        &kp K      &mt RIGHT_SHIFT L  &kp SEMI         &mt RIGHT_GUI SQT
 &kp EQUAL   &mt LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M        &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
-                                           &mo MISC        &kp BSPC  &kp SPACE         &kp RET     &mo SYMBOLS  &kp LGUI
+                                           &trans          &kp BSPC  &kp SPACE         &kp RET     &mo 1  &kp LGUI
             >;
         };
+
 
         symbols {
             display-name = "symbols";
