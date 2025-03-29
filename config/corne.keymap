@@ -15,6 +15,17 @@
 / {
     keymap {
         compatible = "zmk,keymap";
+            
+        symbols {
+            display-name = "symbols";
+
+            bindings = 
+&trans  &kp EXCL     &kp AT      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &trans    &kp N7  &kp N8  &kp N9  &kp STAR   &trans
+&trans  &kp POUND    &kp DOLLAR  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp GRAVE    &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
+&trans  &kp PERCENT  &kp CARET   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp TILDE    &kp AMPS  &kp N1  &kp N2  &kp N3  &kp COMMA  &trans
+                                 &trans                &trans                 &trans       &trans    &trans  &mo 1
+            >;
+        };
 
         base {
             display-name = "base";
@@ -23,7 +34,7 @@
 &kp TAB     &kp Q        &kp W             &kp E           &kp R     &kp T             &kp Y       &kp U        &kp I      &kp O              &kp P            &kp BACKSLASH
 &kp ESCAPE  &kp A        &mt LEFT_SHIFT S  &mt LEFT_GUI D  &kp F     &mt LEFT_ALT G    &mt LALT H  &kp J        &kp K      &mt RIGHT_SHIFT L  &kp SEMI         &mt RIGHT_GUI SQT
 &kp EQUAL   &mt LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M        &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
-                                           &trans          &kp BSPC  &kp SPACE         &kp RET     &mo 1  &kp LGUI
+                                           &trans          &kp BSPC  &kp SPACE         &kp RET     &mo 0        &kp LGUI
             >;
         };
 
@@ -31,7 +42,7 @@
         symbols {
             display-name = "symbols";
 
-            bindings = <
+            bindings = 
 &trans  &kp EXCL     &kp AT      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &trans    &kp N7  &kp N8  &kp N9  &kp STAR   &trans
 &trans  &kp POUND    &kp DOLLAR  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp GRAVE    &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
 &trans  &kp PERCENT  &kp CARET   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp TILDE    &kp AMPS  &kp N1  &kp N2  &kp N3  &kp COMMA  &trans
