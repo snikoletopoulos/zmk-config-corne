@@ -25,6 +25,8 @@
 &kp EQUAL   &mt LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M  &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
                                            &mo 2           &kp BSPC  &kp SPACE         &kp RET     &mo 1  &kp LGUI
             >;
+
+            label = "base";
         };
 
         symbols {
@@ -40,6 +42,8 @@
 &trans  &kp PERCENT  &kp CARET   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp TILDE    &kp AMPS  &kp N1  &kp N2  &kp N3  &kp COMMA  &trans
                                  &trans                &trans                 &trans       &trans    &trans  &kp N0
             >;
+
+            label = "symbols";
         };
 
         misc {
@@ -55,6 +59,8 @@
 &trans       &trans        &trans        &trans        &trans        &trans          &trans    &kp C_PREVIOUS   &kp K_PLAY_PAUSE   &kp C_NEXT  &trans  &trans
                                          &trans        &trans        &trans          &kp RET   &trans           &trans
             >;
+
+            label = "misc";
         };
     };
 };
