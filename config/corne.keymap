@@ -39,8 +39,8 @@
             >;
         };
 
-        symbols {
-            display-name = "symbols";
+        numpad {
+            display-name = "numpad";
 
             bindings = <
 &trans  &kp EXCL     &kp AT      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &trans    &kp N7  &kp N8  &kp N9  &kp STAR   &trans
