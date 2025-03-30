@@ -1,59 +1,124 @@
 /*
  * Copyright (c) 2020 The ZMK Contributors
- *
  * SPDX-License-Identifier: MIT
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/pointing.h>
+
+#define BASE 0
+#define SYMBOLS 1
+#define MISC 2
+#define FUNCTIONS 3
 
 / {
+    behaviors {
+        ht: hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <150>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        captap: caps_lock_tap {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&caps_word>, <&kp CAPSLOCK>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        tri {
+            if-layers = <SYMBOLS MISC>;
+            then-layer = <FUNCTIONS>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-            // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-            //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-
+            display-name = "base";
             bindings = <
-&kp TAB     &kp Q        &kp W             &kp E           &kp R     &kp T             &kp Y       &kp U  &kp I      &kp O              &kp P            &kp BACKSLASH
-&kp ESCAPE  &kp A        &mt LEFT_SHIFT S  &mt LEFT_GUI D  &kp F     &mt LEFT_ALT G    &mt LALT H  &kp J  &kp K      &mt RIGHT_SHIFT L  &kp SEMI         &mt RIGHT_GUI SQT
-&kp EQUAL   &mt LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M  &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
-                                           &mo 2           &kp BSPC  &kp SPACE         &kp RET     &mo 1  &kp LGUI
+//    ┌─────┬────────────┬────────────┬────────────┬──────┬────────────┐   ┌────────────┬──────────────┬─────────┬────────────┬───────────┬────────────┐
+//    │ tab │     Q      │     W      │     E      │  R   │     T      │   │     Y      │      U       │    I    │     O      │     P     │     \      │
+//    ├─────┼────────────┼────────────┼────────────┼──────┼────────────┤   ├────────────┼──────────────┼─────────┼────────────┼───────────┼────────────┤
+//    │ esc │     A      │ &ht lsft S │ &ht lgui D │  F   │ &ht lalt G │   │ &ht lalt H │      J       │    K    │ &ht rsft L │     ;     │ &ht rgui ' │
+//    ├─────┼────────────┼────────────┼────────────┼──────┼────────────┤   ├────────────┼──────────────┼─────────┼────────────┼───────────┼────────────┤
+//    │  =  │ &ht lctl Z │     X      │     C      │  V   │     B      │   │     N      │      M       │    ,    │     .      │ mt rctl / │     -      │
+//    └─────┴────────────┴────────────┼────────────┼──────┼────────────┤   ├────────────┼──────────────┼─────────┼────────────┴───────────┴────────────┘
+//                                    │  mo MISC   │ bspc │    spc     │   │    ent     │  mo SYMBOlS  │ &captap │
+//                                    └────────────┴──────┴────────────┘   └────────────┴──────────────┴─────────┘
+  &kp TAB      &kp Q         &kp W              &kp E            &kp R      &kp T                &kp Y        &kp U         &kp I       &kp O               &kp P             &kp BACKSLASH
+  &kp ESCAPE   &kp A         &ht LEFT_SHIFT S   &ht LEFT_GUI D   &kp F      &ht LEFT_ALT G       &ht LALT H   &kp J         &kp K       &ht RIGHT_SHIFT L   &kp SEMI          &ht RIGHT_GUI SQT
+  &kp EQUAL    &ht LCTRL Z   &kp X              &kp C            &kp V      &kp B                &kp N        &kp M         &kp COMMA   &kp DOT             &mt RCTRL SLASH   &kp MINUS
+                                                &mo MISC         &kp BSPC   &kp SPACE            &kp RET      &mo SYMBOLS   &captap
             >;
         };
 
-        symbols {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-            // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-            // | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
+        numpad {
+            display-name = "numpad";
             bindings = <
-&trans  &kp EXCL     &kp AT      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &trans    &kp N7  &kp N8  &kp N9  &kp STAR   &trans
-&trans  &kp POUND    &kp DOLLAR  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp GRAVE    &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
-&trans  &kp PERCENT  &kp CARET   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp TILDE    &kp AMPS  &kp N1  &kp N2  &kp N3  &kp COMMA  &trans
-                                 &trans                &trans                 &trans       &trans    &trans  &kp N0
+//    ┌─────┬───┬───┬─────┬─────┬─────┐   ┌─────┬─────┬───┬───┬───┬─────┐
+//    │     │ ! │ @ │  {  │  }  │  |  │   │     │  7  │ 8 │ 9 │ * │     │
+//    ├─────┼───┼───┼─────┼─────┼─────┤   ├─────┼─────┼───┼───┼───┼─────┤
+//    │     │ # │ $ │  (  │  )  │  `  │   │     │  4  │ 5 │ 6 │ + │     │
+//    ├─────┼───┼───┼─────┼─────┼─────┤   ├─────┼─────┼───┼───┼───┼─────┤
+//    │     │ % │ ^ │  [  │  ]  │  ~  │   │  &  │  1  │ 2 │ 3 │ , │     │
+//    └─────┴───┴───┼─────┼─────┼─────┤   ├─────┼─────┼───┼───┴───┴─────┘
+//                  │     │     │     │   │     │     │ 0 │
+//                  └─────┴─────┴─────┘   └─────┴─────┴───┘
+  &trans   &kp EXCL      &kp AT       &kp LEFT_BRACE         &kp RIGHT_BRACE         &kp PIPE        &trans     &kp N7   &kp N8   &kp N9   &kp STAR    &trans
+  &trans   &kp POUND     &kp DOLLAR   &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS   &kp GRAVE       &trans     &kp N4   &kp N5   &kp N6   &kp PLUS    &trans
+  &trans   &kp PERCENT   &kp CARET    &kp LEFT_BRACKET       &kp RIGHT_BRACKET       &kp TILDE       &kp AMPS   &kp N1   &kp N2   &kp N3   &kp COMMA   &trans
+                                      &trans                 &trans                  &trans          &trans     &trans   &kp N0
             >;
         };
 
         misc {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
+            display-name = "misc";
             bindings = <
-&bootloader  &trans        &trans        &trans        &trans        &trans          &trans    &kp C_VOLUME_UP  &kp C_VOLUME_DOWN  &kp K_MUTE  &trans  &trans
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN         &kp UP             &kp RIGHT   &trans  &trans
-&trans       &trans        &trans        &trans        &trans        &trans          &trans    &kp C_PREVIOUS   &kp K_PLAY_PAUSE   &kp C_NEXT  &trans  &trans
-                                         &trans        &trans        &trans          &kp RET   &trans           &trans
+//    ┌────────┬──────────┬──────────┬──────────┬──────────┬──────────┐   ┌──────┬──────┬──────┬──────┬─────┬─────┐
+//    │ bt_clr │ bt_sel 0 │ bt_sel 1 │ bt_sel 2 │ bt_sel 3 │ out_ tog │   │      │ volu │ vold │ mute │     │     │
+//    ├────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
+//    │        │          │          │          │          │          │   │ left │ down │  up  │ rght │     │     │
+//    ├────────┼──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────┼──────┼──────┼──────┼─────┼─────┤
+//    │        │          │          │          │          │          │   │      │ prev │ play │ next │     │     │
+//    └────────┴──────────┴──────────┼──────────┼──────────┼──────────┤   ├──────┼──────┼──────┼──────┴─────┴─────┘
+//                                   │          │          │          │   │      │      │      │
+//                                   └──────────┴──────────┴──────────┘   └──────┴──────┴──────┘
+  &bt BT_CLR   &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &out OUT_TOG       &trans     &kp C_VOLUME_UP   &kp C_VOLUME_DOWN   &kp K_MUTE   &trans   &trans
+  &trans       &trans         &trans         &trans         &trans         &trans             &kp LEFT   &kp DOWN          &kp UP              &kp RIGHT    &trans   &trans
+  &trans       &trans         &trans         &trans         &trans         &trans             &trans     &kp C_PREVIOUS    &kp K_PLAY_PAUSE    &kp C_NEXT   &trans   &trans
+                                             &trans         &trans         &trans             &trans     &trans            &trans
+            >;
+        };
+
+        functions {
+            display-name = "func";
+            bindings = <
+//    ┌─────┬────────────────┬────────────────┬────────────────┬────────────────┬─────┐   ┌─────┬─────┬─────┬────┬─────┬─────┐
+//    │     │  &msc SCRL_up  │                │  &mmv MOVE_up  │                │     │   │     │ f7  │ f8  │ f9 │ f10 │     │
+//    ├─────┼────────────────┼────────────────┼────────────────┼────────────────┼─────┤   ├─────┼─────┼─────┼────┼─────┼─────┤
+//    │     │ &msc SCRL_down │ &mmv MOVE_left │ &mmv MOVE_down │ &mmv MOVE_rght │     │   │     │ f4  │ f5  │ f6 │ f11 │     │
+//    ├─────┼────────────────┼────────────────┼────────────────┼────────────────┼─────┤   ├─────┼─────┼─────┼────┼─────┼─────┤
+//    │     │                │                │      rclk      │      lclk      │     │   │     │ f1  │ f2  │ f3 │ f12 │     │
+//    └─────┴────────────────┴────────────────┼────────────────┼────────────────┼─────┤   ├─────┼─────┼─────┼────┴─────┴─────┘
+//                                            │                │                │     │   │     │     │     │
+//                                            └────────────────┴────────────────┴─────┘   └─────┴─────┴─────┘
+  &trans   &msc SCRL_UP     &trans           &mmv MOVE_UP     &trans            &trans       &trans   &kp F7   &kp F8   &kp F9   &kp F10   &trans
+  &trans   &msc SCRL_DOWN   &mmv MOVE_LEFT   &mmv MOVE_DOWN   &mmv MOVE_RIGHT   &trans       &trans   &kp F4   &kp F5   &kp F6   &kp F11   &trans
+  &trans   &trans           &trans           &mkp RCLK        &mkp LCLK         &trans       &trans   &kp F1   &kp F2   &kp F3   &kp F12   &trans
+                                             &trans           &trans            &trans       &trans   &trans   &trans
             >;
         };
     };
