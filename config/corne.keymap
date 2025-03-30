@@ -7,6 +7,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
 #define SYMBOLS 1
@@ -54,8 +55,8 @@
             display-name = "misc";
 
             bindings = <
-&trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_VOLUME_UP  &kp C_VOLUME_DOWN  &kp K_MUTE  &trans  &trans
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN         &kp UP             &kp RIGHT   &trans  &trans
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &out OUT_TOG    &trans    &kp C_VOLUME_UP  &kp C_VOLUME_DOWN  &kp K_MUTE  &trans  &trans
+&trans      &trans        &trans        &trans        &trans        &trans          &kp LEFT  &kp DOWN         &kp UP             &kp RIGHT   &trans  &trans
 &trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_PREVIOUS   &kp K_PLAY_PAUSE   &kp C_NEXT  &trans  &trans
                                         &trans        &trans        &trans          &trans    &trans           &trans
             >;
