@@ -28,7 +28,8 @@
     keymap {
         compatible = "zmk,keymap";
 
-        base0 {
+        base {
+            display-name = "base";
 
             bindings = <
 &kp TAB     &kp Q        &kp W             &kp E           &kp R     &kp T             &kp Y       &kp U     &kp I      &kp O              &kp P            &kp BACKSLASH
@@ -36,11 +37,10 @@
 &kp EQUAL   &ht LCTRL Z  &kp X             &kp C           &kp V     &kp B             &kp N       &kp M     &kp COMMA  &kp DOT            &mt RCTRL SLASH  &kp MINUS
                                            &mo MISC        &kp BSPC  &kp SPACE         &kp RET     &mo BASE  &kp LGUI
             >;
-
-            label = "base1";
         };
 
-        symbols1 {
+        symbols {
+            display-name = "symbols";
 
             bindings = <
 &trans  &kp EXCL     &kp AT      &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE     &trans    &kp N7  &kp N8  &kp N9  &kp STAR   &trans
@@ -48,11 +48,10 @@
 &trans  &kp PERCENT  &kp CARET   &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp TILDE    &kp AMPS  &kp N1  &kp N2  &kp N3  &kp COMMA  &trans
                                  &trans                &trans                 &trans       &trans    &trans  &kp N0
             >;
-
-            label = "symbols2";
         };
 
-        misc2 {
+        misc {
+            display-name = "misc";
 
             bindings = <
 &trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_VOLUME_UP  &kp C_VOLUME_DOWN  &kp K_MUTE  &trans  &trans
@@ -60,8 +59,6 @@
 &trans      &trans        &trans        &trans        &trans        &trans          &trans    &kp C_PREVIOUS   &kp K_PLAY_PAUSE   &kp C_NEXT  &trans  &trans
                                         &trans        &trans        &trans          &trans    &trans           &trans
             >;
-
-            label = "misc3";
         };
     };
 };
