@@ -12,7 +12,7 @@
 #define BASE 0
 #define SYMBOLS 1
 #define MISC 2
-#define FUNCTIONS 2
+#define FUNCTIONS 3
 
 / {
     behaviors {
