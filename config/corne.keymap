@@ -14,6 +14,10 @@
 #define MISC 2
 #define FUNCTIONS 3
 
+&caps_word {
+    continue-list = <UNDERSCORE BACKSPACE DELETE MINUS>;
+};
+
 / {
     behaviors {
         ht: hold_tap {
